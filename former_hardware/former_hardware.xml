@@ -1,0 +1,9 @@
+<library path="former_hardware">
+  <class name="former_hardware/FormerHardware"
+         type="former_hardware::FormerHardware"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      Hardware interface for Former
+    </description>
+  </class>
+</library>
