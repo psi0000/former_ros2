@@ -29,7 +29,6 @@ def generate_launch_description():
     # Get the launch directory
     bringup_dir = get_package_share_directory('former_navigation2')
     launch_dir = os.path.join(bringup_dir, 'launch')
-
     # Create the launch configuration variables
     namespace = LaunchConfiguration('namespace')
     use_namespace = LaunchConfiguration('use_namespace')
@@ -108,15 +107,15 @@ def generate_launch_description():
                               'params_file': params_file,
                               'use_lifecycle_mgr': 'false'}.items()),
 
-        # IncludeLaunchDescription(
-        #     PythonLaunchDescriptionSource(os.path.join(launch_dir, 'navigation2_launch.py')),
-        #     launch_arguments={'namespace': namespace,
-        #                       'use_sim_time': use_sim_time,
-        #                       'autostart': autostart,
-        #                       'params_file': params_file,
-        #                       'default_bt_xml_filename': default_bt_xml_filename,
-        #                       'use_lifecycle_mgr': 'false',
-        #                       'map_subscribe_transient_local': 'true'}.items()),
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(os.path.join(launch_dir, 'nav_goal_launch.py')),
+            launch_arguments={'namespace': namespace,
+                              'use_sim_time': use_sim_time,
+                              'autostart': autostart,
+                              'params_file': params_file,
+                              'default_bt_xml_filename': default_bt_xml_filename,
+                              'use_lifecycle_mgr': 'false',
+                              'map_subscribe_transient_local': 'true'}.items()),
     ])
 
     # Create the launch description and populate
