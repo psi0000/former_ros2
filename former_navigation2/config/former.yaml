@@ -38,6 +38,14 @@ amcl:
     z_rand: 0.5
     z_short: 0.05
     scan_topic: scan
+    # /intialpose about 4th_carto
+    set_initial_pose: true
+    initial_pose:
+      x: 0.084
+      y: -0.332
+      z: -0.540
+      yaw: -0.4914918853472364
+
 
 amcl_map_client:
   ros__parameters:
