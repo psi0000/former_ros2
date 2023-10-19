@@ -30,7 +30,7 @@ def generate_launch_description():
         default=os.path.join(
             get_package_share_directory("former_navigation2"),
             "maps", 
-            "4th_carto.yaml"
+            "4th.yaml"
         ),
     )
     nav2_config_dir = LaunchConfiguration(
@@ -51,6 +51,11 @@ def generate_launch_description():
 
     return LaunchDescription(
         [
+            IncludeLaunchDescription(
+                PythonLaunchDescriptionSource(
+                    [former_bringup_launch_file_dir, "/base_launch.py"]
+                )
+            ),
             IncludeLaunchDescription(
                 PythonLaunchDescriptionSource(
                     [former_description_launch_file_dir, "/description_launch.py"]
