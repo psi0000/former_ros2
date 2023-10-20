@@ -12,9 +12,11 @@
 using namespace std;
 
 string id="0";
-int X=0;
-int Y=0;
-int W=0;
+double X=0;
+double Y=0;
+double Z=0;
+double W=0;
+
 list<int> lt;
 
 void Point(list<int> i){
@@ -25,18 +27,20 @@ void Point(list<int> i){
          
         cout<<"Go to 1"<<endl;
         id="map";
-        X=3.01;
-        Y=0.686;
-        W=0.00178; 
+        X=-0.690582;
+        Y=2.98624;
+        Z=0.475004;
+        W=0.879984; 
         break;
     
 
     case 2:
         cout<<"Go to 2"<<endl;
         id="map";
-        X=0.2; 
-        Y=2.0;
-        W=1.0; 
+        X=3.36312; 
+        Y= 1.11576;
+        Z=-0.855573;
+        W=0.517683; 
         break;
     
 
@@ -84,6 +88,7 @@ public:
                 goal_msg.pose.header.frame_id = id;
                 goal_msg.pose.pose.position.x = X;  // Adjust coordinates as needed
                 goal_msg.pose.pose.position.y = Y;
+                goal_msg.pose.pose.orientation.z = Z; 
                 goal_msg.pose.pose.orientation.w = W; // Quaternion orientation
                 
                 RCLCPP_INFO(this->get_logger(), "Sending goal");
