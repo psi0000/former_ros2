@@ -14,7 +14,7 @@ amcl:
     global_frame_id: "map"
     lambda_short: 0.1
     laser_likelihood_max_dist: 2.0
-    laser_max_range: 100.0
+    laser_max_range: 120.0
     laser_min_range: -1.0
     laser_model_type: "likelihood_field"
     max_beams: 60
@@ -144,7 +144,7 @@ controller_server:
       critics: ["ObstacleFootprint", "RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]
       BaseObstacle.scale: 0.02
       ObstacleFootprint.min_obstacle_dist: 0.5
-      ObstacleFootprint.max_scaling_factor: 0.2
+      ObstacleFootprint.max_scaling_factor: 0.5
       PathAlign.scale: 32.0
       PathAlign.forward_point_distance: 0.1
       GoalAlign.scale: 24.0
@@ -204,7 +204,7 @@ local_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 1.5
-        inflation_radius: 0.3
+        inflation_radius: 3.0
       static_layer:
         map_subscribe_transient_local: true
       always_send_full_costmap: true
@@ -256,8 +256,8 @@ global_costmap:
           data_type: "LaserScan"
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 1.5
-        inflation_radius: 0.3
+        cost_scaling_factor: 1.7
+        inflation_radius: 0.7
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
         map_subscribe_transient_local: true

@@ -24,6 +24,15 @@ void Point(list<int> i){
     
     switch (i.front())
     {
+    case 0:
+        cout<<"Go to InitPose"<<endl;
+        
+        id="map";
+        X= 0.084;
+        Y=-0.332;
+        Z=-0.540;
+        W=-0.4914918853472364; 
+        break;
     case 1:
          
         cout<<"Go to 1"<<endl;
@@ -47,10 +56,12 @@ void Point(list<int> i){
 
     case 3:
         cout<<"Go to 3"<<endl;
+        
         id="map";
-        X=0.0;
-        Y=0.0;
-        W=1.0; 
+        X= 0.084;
+        Y=-0.332;
+        Z=-0.540;
+        W=-0.4914918853472364; 
         break;
     
     default:
