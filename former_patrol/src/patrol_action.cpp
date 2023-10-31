@@ -9,8 +9,9 @@
 #include <string>
 #include <iostream>
 #include <list>
+#include "nav_msgs/msg/odometry.hpp"
 using namespace std;
-
+using namespace std::placeholders;
 string id="0";
 double X=0;
 double Y=0;
@@ -60,24 +61,25 @@ void Point(list<int> i){
 
 }
 
-
 class MoveActionClient : public rclcpp::Node {
 public:
 
     using MovetoGoal = nav2_msgs::action::NavigateToPose;
     using GoalHandleMovetoGoal = rclcpp_action::ClientGoalHandle<MovetoGoal>;
-
+    using CurrentPose = nav_msgs::msg::Odometry;
     MoveActionClient(list<int> i)
     : Node("patrol_action_client")
     {
         this->client_ptr_ = rclcpp_action::create_client<MovetoGoal>(
         this,
         "navigate_to_pose");
+
+        sub_ = this->create_subscription<nav_msgs::msg::Odometry>("cur_pose", rclcpp::SensorDataQoS(), std::bind(&MoveActionClient::odomCallback, this, _1));
         this->sendGoal(i);
     }
 
     void sendGoal(list<int> i) {
-        using namespace std::placeholders;
+        
         if (!this->client_ptr_->wait_for_action_server()) {
             RCLCPP_ERROR(this->get_logger(), "Action server not available after waiting");
             rclcpp::shutdown();
@@ -93,17 +95,38 @@ public:
                 
                 RCLCPP_INFO(this->get_logger(), "Sending goal");
                 
+                RCLCPP_INFO(this->get_logger(), "Send goal_pose x : %f",X);
+                RCLCPP_INFO(this->get_logger(), "Send goal_pose y : %f",Y);
+                RCLCPP_INFO(this->get_logger(), "Send goal_pose z : %f",Z);
+                RCLCPP_INFO(this->get_logger(), "Send goal_pose w : %f \n",W);
+
+                cout << "*******************************************************************************"<<endl;
+               
                 auto send_goal_options = rclcpp_action::Client<MovetoGoal>::SendGoalOptions();
                 send_goal_options.goal_response_callback = std::bind(&MoveActionClient::goal_response_callback, this, _1);
                 send_goal_options.result_callback = std::bind(&MoveActionClient::goalResultCallback, this, _1);
                 this->client_ptr_->async_send_goal(goal_msg, send_goal_options);
                 
-        
     }
-    
+
+    void Pose(){
+        sub_ = this->create_subscription<nav_msgs::msg::Odometry>("cur_pose", rclcpp::SensorDataQoS(), std::bind(&MoveActionClient::odomCallback, this, _1));
+    }
+
 private:
+
+    rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr sub_;
     rclcpp_action::Client<MovetoGoal>::SharedPtr client_ptr_;
     rclcpp::TimerBase::SharedPtr timer_;
+
+    void odomCallback(const nav_msgs::msg::Odometry::SharedPtr msg) const {
+            
+            RCLCPP_INFO(this->get_logger(), "cur_p : %f",msg->pose.pose.position.x);
+            RCLCPP_INFO(this->get_logger(), "cur_pose x : %f",msg->pose.pose.position.x);
+            RCLCPP_INFO(this->get_logger(), "cur_pose y : %f",msg->pose.pose.position.y);
+            RCLCPP_INFO(this->get_logger(), "cur_pose z : %f",msg->pose.pose.orientation.z);
+            RCLCPP_INFO(this->get_logger(), "cur_pose w : %f \n",msg->pose.pose.orientation.w);
+    }
 
     void goal_response_callback(std::shared_future<GoalHandleMovetoGoal::SharedPtr> future)
     {
@@ -112,7 +135,8 @@ private:
         RCLCPP_ERROR(this->get_logger(), "Goal was rejected by server");
         } else {
         RCLCPP_INFO(this->get_logger(), "Goal accepted by server, waiting for result");
-        }
+        Pose();
+        }   
     }
 
 

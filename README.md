@@ -1,5 +1,14 @@
-<!-- bring up rviz, navigation2, description -->
-$ navigation
+<!-- run navigation2 -->
+$ ros2 launch former_navigation2 navigation2_launch.py
+
+% patrol
+
+$ ros2 run former_patrol patrol_action (int)[argv] (int)[argv]
+
+
+
+
+
 
 -rviz map color
 
@@ -22,3 +31,6 @@ $ navigation
         y: -0.332
         z: -0.540
         yaw: -0.4914918853472364
+
+
+
