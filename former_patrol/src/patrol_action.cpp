@@ -178,8 +178,6 @@ int main(int argc, char** argv) {
     
     for(int i=1;i<argc;i++){
         lt.push_back(*argv[i]-48);
-        // std::cout<<argv[i]<<std::endl;
-        //std::cout<<lt.front()<<std::endl;
     }
     auto action_client=std::make_shared<MoveActionClient>(lt); 
     rclcpp::spin(action_client);

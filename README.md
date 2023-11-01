@@ -5,6 +5,26 @@ $ ros2 launch former_navigation2 navigation2_launch.py
 
 $ ros2 run former_patrol patrol_action (int)[argv] (int)[argv]
 
+$ ros2 run former_patrol patrol_keyboard
+
+***********************************************
+Summary
+
+This is clober's navigation package. 
+
+CASE
+1. patrol_action 
+    using argv, put goal_poses in list , and then navigation to goal_list in order.
+
+    Using Action -> Can configure robot's navigation's state
+
+2. patrol_keyboard
+    using keyboard values, navigate to goal_pose.
+
+    Using Topic -> It can only publish goal_pose. So, It can't know robot's state
+
+
+
 
 
 

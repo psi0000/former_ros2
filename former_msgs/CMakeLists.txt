@@ -26,6 +26,7 @@ set(
   SRV_FILES
   "srv/SetEstop.srv"
   "srv/SetLed.srv"
+  "srv/SetPose.srv"
 )
 
 rosidl_generate_interfaces(

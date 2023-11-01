@@ -6,6 +6,7 @@ find_package(ament_cmake REQUIRED)
 find_package(nav2_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_action REQUIRED)
+find_package(former_msgs REQUIRED)
 
 
 # Default to C99
@@ -24,13 +25,25 @@ endif()
 
 
 add_executable(patrol_action src/patrol_action.cpp)
-ament_target_dependencies(patrol_action
+add_executable(patrol_keyboard src/patrol_keyboard.cpp)
+
+
+ament_target_dependencies(patrol_action 
+   
     nav2_msgs
     rclcpp
     rclcpp_action
 )
 
-install(TARGETS patrol_action
+
+ament_target_dependencies(patrol_keyboard 
+
+    nav2_msgs
+    former_msgs
+    rclcpp
+)
+
+install(TARGETS patrol_action patrol_keyboard
     DESTINATION lib/${PROJECT_NAME}
 )
 
@@ -39,9 +52,6 @@ ament_export_dependencies(
     nav2_msgs
     rclcpp_action
 )
-
-
-
 
 
 
