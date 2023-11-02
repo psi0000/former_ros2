@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>clober_base</name>
+  <version>0.2.1</version>
+  <description>
+    The package for Clober base system
+  </description>
+  <maintainer email="shlee@roas.co.kr">Brighten Lee</maintainer>
+  <license>Apache License 2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend> 
+  
+  <depend>rclcpp</depend>
+  <depend>controller_manager</depend>
+  <depend>roas_base</depend>
+  <depend>clober_msgs</depend>
+
+  <depend>ros2_controllers</depend>
+  <depend>robot_localization</depend>
+  <depend>twist_mux</depend>
+  <depend>sick_scan2</depend>
+  <depend>realsense2_camera</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

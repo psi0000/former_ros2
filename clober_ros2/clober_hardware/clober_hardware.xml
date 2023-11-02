@@ -1,0 +1,9 @@
+<library path="clober_hardware">
+  <class name="clober_hardware/CloberHardware"
+         type="clober_hardware::CloberHardware"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      Hardware interface for Clober
+    </description>
+  </class>
+</library>

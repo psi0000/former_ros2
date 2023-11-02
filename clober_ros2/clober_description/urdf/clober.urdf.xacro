@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="clober">
+
+  <xacro:include filename="$(find clober_description)/urdf/include/tim571.urdf.xacro" />
+  <xacro:include filename="$(find clober_description)/urdf/include/d435.urdf.xacro" />
+
+  <xacro:property name="PI" value="3.1415926535897931" />
+
+  <material name="black">
+    <color rgba="0.15 0.15 0.15 1.0" />
+  </material>
+
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://clober_description/meshes/clober.dae" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://clober_description/meshes/clober.dae" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="left_wheel_joint" type="continuous">
+    <parent link="base_link" />
+    <child link="left_wheel_link" />
+    <origin xyz="0 0.15 0.015" rpy="0 0 0" />
+    <axis xyz="0 1 0" rpy="0 0 0" />
+  </joint>
+
+  <link name="left_wheel_link">
+    <visual>
+      <origin xyz="0 -0.0234 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://clober_description/meshes/wheel.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://clober_description/meshes/wheel.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="right_wheel_joint" type="continuous">
+    <parent link="base_link" />
+    <child link="right_wheel_link" />
+    <origin xyz="0 -0.15 0.015" rpy="0 0 0" />
+    <axis xyz="0 1 0" rpy="0 0 0" />
+  </joint>
+
+  <link name="right_wheel_link">
+    <visual>
+      <origin xyz="0 0.0234 0" rpy="0 0 ${PI}" />
+      <geometry>
+        <mesh filename="package://clober_description/meshes/wheel.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 ${PI}" />
+      <geometry>
+        <mesh filename="package://clober_description/meshes/wheel.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="imu_link" />
+    <origin xyz="0.134 0 0.067" rpy="0 0 0" />
+  </joint>
+
+  <link name="imu_link" />
+
+  <joint name="left_ultrasonic_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="left_ultrasonic" />
+    <origin xyz="0.1956 0.0968 0.0865" rpy="0 0 0" />
+  </joint>
+
+  <link name="left_ultrasonic" />
+
+  <joint name="right_ultrasonic_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="right_ultrasonic" />
+    <origin xyz="0.1956 -0.0968 0.0865" rpy="0 0 0" />
+  </joint>
+
+  <link name="right_ultrasonic" />
+
+  <xacro:sensor_tim571 parent="base_link">
+    <origin xyz="0.1592 0 0.2285" rpy="${PI} 0 0" />
+  </xacro:sensor_tim571>
+
+  <xacro:sensor_d435 parent="base_link" name="camera">
+    <origin xyz="0.178 0 0.0686" rpy="0 -${PI/12} 0" />
+  </xacro:sensor_d435>
+
+  <ros2_control name="CloberSystem" type="system">
+    <hardware>
+      <plugin>clober_hardware/CloberHardware</plugin>
+      <param name="port">/dev/clober</param>
+      <param name="baud">115200</param>
+      <param name="robot">clober</param>
+      <param name="wheel_radius">0.085</param>
+      <param name="max_speed">1.5</param>
+      <param name="max_rpm">200.0</param>
+    </hardware>
+    <joint name="left_wheel_joint">
+      <command_interface name="velocity">
+        <param name="min">-1</param>
+        <param name="max">1</param>
+      </command_interface>
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+    <joint name="right_wheel_joint">
+      <command_interface name="velocity">
+        <param name="min">-1</param>
+        <param name="max">1</param>
+      </command_interface>
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+  </ros2_control>
+
+</robot>
