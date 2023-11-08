@@ -1,0 +1,5 @@
+string robot_id
+string id
+---
+uint8 response_code
+bool success

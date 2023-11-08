@@ -20,6 +20,9 @@ set(
   "msg/Feedback.msg"
   "msg/MotorState.msg"
   "msg/RobotState.msg"
+  "msg/Location.msg"
+  "msg/Velocity.msg"
+  "msg/AgentStatus.msg"
 )
 
 set(

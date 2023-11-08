@@ -22,8 +22,6 @@ def generate_launch_description():
     clober_description_launch_file_dir = os.path.join(
         get_package_share_directory("clober_description"), "launch"
     )
-    
-    
     map_dir = LaunchConfiguration(
         "map",
         default=os.path.join(
