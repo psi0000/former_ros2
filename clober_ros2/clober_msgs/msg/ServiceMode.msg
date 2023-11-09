@@ -1,0 +1,4 @@
+uint32 mode
+uint32 DELIVERY=0
+uint32 RETRIEVE=1
+uint32 NONE=99

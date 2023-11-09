@@ -10,9 +10,7 @@ Location local_destination #목적지 좌표
 string poi_id #목적지 PoI ID
 Location[] local_path #로봇경로
 
-
-
-#ServiceMode service
-#TMSMode tms
-# NavMode nav_mode #네비게이션 모드
+ServiceMode service
+TMSMode tms
+NavMode nav #네비게이션 모드
 

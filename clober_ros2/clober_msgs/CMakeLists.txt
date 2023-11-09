@@ -23,6 +23,10 @@ set(
   "msg/Location.msg"
   "msg/Velocity.msg"
   "msg/AgentStatus.msg"
+  "msg/ServiceMode.msg"
+  "msg/TMSMode.msg"
+  "msg/NavMode.msg"
+
 )
 
 set(
