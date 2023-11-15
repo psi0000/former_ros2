@@ -27,7 +27,7 @@ def generate_launch_description():
         default=os.path.join(
             get_package_share_directory("clober_navigation2"),
             "maps", 
-            "4th.yaml"
+            "CLOBOT_4F.yaml"
         ),
     )
     nav2_config_dir = LaunchConfiguration(

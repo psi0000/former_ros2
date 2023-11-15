@@ -34,6 +34,8 @@ set(
   "srv/SetEstop.srv"
   "srv/SetLed.srv"
   "srv/SetPose.srv"
+  "srv/Wait.srv"
+  "srv/WaitFinish.srv"
 )
 
 rosidl_generate_interfaces(
