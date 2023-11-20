@@ -13,6 +13,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(builtin_interfaces REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
 
 set(
   MSG_FILES
@@ -36,13 +37,14 @@ set(
   "srv/SetPose.srv"
   "srv/Wait.srv"
   "srv/WaitFinish.srv"
+  "srv/SetGoal.srv"
 )
 
 rosidl_generate_interfaces(
   ${PROJECT_NAME}
   ${MSG_FILES}
   ${SRV_FILES}
-  DEPENDENCIES builtin_interfaces std_msgs
+  DEPENDENCIES builtin_interfaces geometry_msgs std_msgs
 )
 
 ament_export_dependencies(rosidl_default_runtime)

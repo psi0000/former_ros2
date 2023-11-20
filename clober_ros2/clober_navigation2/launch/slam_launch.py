@@ -16,7 +16,7 @@ def generate_launch_description():
         default=os.path.join(
             get_package_share_directory("clober_navigation2"),
             "config",
-            "mapper_params_lifelong.yaml",
+            "mapper_params_li   felong.yaml",
         ),
     )
 
@@ -29,5 +29,7 @@ def generate_launch_description():
                 output="screen",
                 parameters=[slam_config_dir, {"use_sim_time": use_sim_time}],
             ),
+
+        
         ]
     )
