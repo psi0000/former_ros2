@@ -38,13 +38,14 @@ set(
   "srv/Wait.srv"
   "srv/WaitFinish.srv"
   "srv/SetGoal.srv"
-)
+  "srv/GetGtfInfo.srv"
+ )
 
 rosidl_generate_interfaces(
   ${PROJECT_NAME}
   ${MSG_FILES}
   ${SRV_FILES}
-  DEPENDENCIES builtin_interfaces geometry_msgs std_msgs
+  DEPENDENCIES builtin_interfaces std_msgs geometry_msgs
 )
 
 ament_export_dependencies(rosidl_default_runtime)

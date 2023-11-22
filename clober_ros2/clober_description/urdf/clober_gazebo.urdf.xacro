@@ -31,6 +31,15 @@
   <material name="black">
     <color rgba="0.15 0.15 0.15 1.0" />
   </material>
+<!-- 
+  <link name="map">
+  
+  <joint name="base_joint" type="fixed">
+    <parent link="map" />
+    <child link="base_link" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint> -->
+
 
   <link name="base_link">
     <visual>

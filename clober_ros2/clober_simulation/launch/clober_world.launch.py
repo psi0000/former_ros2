@@ -26,7 +26,7 @@ from launch.substitutions import EnvironmentVariable
 
 def generate_launch_description():
 
-    use_sim_time = LaunchConfiguration('use_sim_time', default='True')
+    use_sim_time = LaunchConfiguration('use_sim_time', default='true')
     world_file_name = 'clober.model'
     # world = os.path.join(get_package_share_directory('clober_simulation'), 'worlds', world_file_name)
 
@@ -75,7 +75,7 @@ def generate_launch_description():
 
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([
-                robot_description_path, '/description_launch.py'
+                robot_description_path, '/gazebo_description_launch.py'
             ]), launch_arguments={'use_sim_time': use_sim_time}.items(),
         )
     

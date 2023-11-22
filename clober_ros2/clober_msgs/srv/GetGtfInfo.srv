@@ -1,0 +1,8 @@
+string robot_id
+geometry_msgs/Pose2D base_to_lidar_static_pose
+
+uint8 calc_time_out
+---
+uint16 success
+geometry_msgs/Pose2D gtl_pose
+string message

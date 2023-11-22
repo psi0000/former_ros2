@@ -13,7 +13,7 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    use_sim_time = LaunchConfiguration("use_sim_time", default="false")
+    use_sim_time = LaunchConfiguration("use_sim_time", default="true")
     autostart = LaunchConfiguration("autostart", default="true")
     
     clober_bringup_launch_file_dir = os.path.join(
@@ -25,17 +25,17 @@ def generate_launch_description():
     map_dir = LaunchConfiguration(
         "map",
         default=os.path.join(
-            get_package_share_directory("clober_navigation2"),
-            "maps", 
-            "CLOBOT_4F.yaml"
+            get_package_share_directory("clober_navigation"),
+            "map", 
+            "gz_map.yaml"
         ),
     )
     nav2_config_dir = LaunchConfiguration(
         "nav2_config_dir",
         default=os.path.join(
-            get_package_share_directory("clober_navigation2"),
-            "config",
-            "clober.yaml",
+            get_package_share_directory("clober_navigation"),
+            "param",
+            "clober_gz.yaml",
         ),
     )
 

@@ -16,7 +16,7 @@ def generate_launch_description():
         default=os.path.join(
             get_package_share_directory("clober_navigation2"),
             "config",
-            "mapper_params_li   felong.yaml",
+            "mapper_params_lifelong.yaml",
         ),
     )
 
