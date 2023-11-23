@@ -27,17 +27,22 @@ from launch.conditions import UnlessCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import PushRosNamespace
+from launch_ros.actions import Node
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 def generate_launch_description():
 
+    nav2_launch_dir = os.path.join(
+        get_package_share_directory("clober_navigation2"), "launch"
+    )
     nav_dir = get_package_share_directory('clober_navigation')
     launch_dir = os.path.join(nav_dir,'launch')
     param_dir = os.path.join(nav_dir,'param')
-    param_file = 'clober_params.yaml'
+    param_file = 'clober_gz.yaml'
     bt_file = 'BehaviorTree.xml'
-    map_dir = os.path.join(nav_dir,'map','mini_h_hallway_3')
-    map_file = 'map.yaml'
+    # bt_file = 'follow_point.xml'
+    map_dir = os.path.join(nav_dir,'map')
+    map_file = 'gz_map.yaml'
 
     namespace = LaunchConfiguration('namespace')
     use_namespace = LaunchConfiguration('use_namespace')
@@ -60,7 +65,7 @@ def generate_launch_description():
 
     declare_namespace_cmd = DeclareLaunchArgument(
         'namespace',
-        default_value='clober_1',
+        default_value='clober',
         description='Top-level namespace')
 
     declare_use_namespace_cmd = DeclareLaunchArgument(
@@ -104,24 +109,24 @@ def generate_launch_description():
 
     declare_map_topic_cmd = DeclareLaunchArgument(
         'map_topic',
-        default_value='/clober_1/map',
+        default_value='/map',
         description='map topic')
 
     declare_scan_topic_cmd = DeclareLaunchArgument(
         'scan_topic',
-        default_value='/clober_1/scan',
+        default_value='/scan',
         description='scan topic')
 
     declare_bt_publisher_port_cmd = DeclareLaunchArgument(
         'bt_publisher',
-        default_value='1668',
+        default_value='1666',
         description='groot_zmq_publisher_port')
 
     declare_bt_server_port_cmd = DeclareLaunchArgument(
         'bt_server',
-        default_value='1669',
+        default_value='1667',
         description='groot_zmq_server_port topic')
-
+    
     bringup_cmd_group = GroupAction([
         PushRosNamespace(
             condition=IfCondition(use_namespace),
@@ -138,20 +143,23 @@ def generate_launch_description():
                             'params_file': params_file,
                             'use_lifecycle_mgr': 'false'}.items()),
 
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(os.path.join(launch_dir, 'navigation.launch.py')),
-            launch_arguments={'namespace': namespace,
-                            'use_sim_time': use_sim_time,
-                            'autostart': autostart,
-                            'params_file': params_file,
-                            'default_bt_xml_filename': default_bt_xml_filename,
-                            'use_lifecycle_mgr': 'false',
-                            'map_subscribe_transient_local': 'true',
-                            'map': map_topic,
-                            'scan': scan_topic,
-                            'bt_publisher': bt_publisher_port,
-                            'bt_server': bt_server_port}.items()),
-                            
+        # IncludeLaunchDescription(
+        #     PythonLaunchDescriptionSource(os.path.join(launch_dir, 'navigation.launch.py')),
+        #     launch_arguments={'namespace': namespace,
+        #                     'use_sim_time': use_sim_time,
+        #                     'autostart': autostart,
+        #                     'params_file': params_file,
+        #                     'default_bt_xml_filename': default_bt_xml_filename,
+        #                     'use_lifecycle_mgr': 'false',
+        #                     'map_subscribe_transient_local': 'true',
+        #                     'map': map_topic,
+        #                     'scan': scan_topic,
+        #                     'bt_publisher': bt_publisher_port,
+        #                     'bt_server': bt_server_port}.items()),
+
+        
+
+
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(os.path.join(launch_dir, 'rviz.launch.py')),
             launch_arguments={'use_sim_time': use_sim_time,
@@ -159,7 +167,18 @@ def generate_launch_description():
                             'map_subscribe_transient_local': 'true',
                             'map': map_topic,
                             'scan': scan_topic}.items()),
-                            
+        
+        
+         # navigation2 bringup 
+            IncludeLaunchDescription(
+                PythonLaunchDescriptionSource([nav2_launch_dir, "/bringup_launch.py"]),
+                launch_arguments={
+                    "use_sim_time": use_sim_time,
+                    "autostart": autostart,
+                    "map": map_dir,
+                    "params_file": params_file,
+                }.items(),
+            ),                   
     ])
 
 

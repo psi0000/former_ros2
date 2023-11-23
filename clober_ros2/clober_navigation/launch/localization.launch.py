@@ -30,9 +30,9 @@ def generate_launch_description():
     # Get the launch directory
     nav_dir = get_package_share_directory('clober_navigation')
     param_dir = os.path.join(nav_dir,'param')
-    param_file = 'clober_params.yaml'
-    map_dir = os.path.join(nav_dir,'map','h_hallway')
-    map_file = 'map.yaml'
+    param_file = 'clober_gz.yaml'
+    map_dir = os.path.join(nav_dir,'map')
+    map_file = 'gz_map.yaml'
 
     namespace = LaunchConfiguration('namespace')
     map_yaml_file = LaunchConfiguration('map')

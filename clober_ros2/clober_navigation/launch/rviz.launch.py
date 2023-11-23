@@ -10,8 +10,8 @@ def generate_launch_description():
 
     use_sim_time = LaunchConfiguration('use_sim_time',default='true')
     open_rviz = LaunchConfiguration('open_rviz',default='true')
-    rviz_config_dir = os.path.join(get_package_share_directory('clober_navigation'),'rviz','navigation.rviz')
-
+    # rviz_config_dir = os.path.join(get_package_share_directory('clober_navigation'),'rviz','navigation.rviz')
+    rviz_config_dir = os.path.join(get_package_share_directory('clober_description'),'rviz','clober.rviz')
     remappings = [('/tf', 'tf'),
                   ('/tf_static', 'tf_static'),
                   ('/initialpose','initialpose'),
