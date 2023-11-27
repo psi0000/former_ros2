@@ -34,9 +34,9 @@ def generate_launch_description():
     nav_dir = get_package_share_directory('clober_navigation')
     launch_dir = os.path.join(nav_dir,'launch')
     param_dir = os.path.join(nav_dir,'param')
-    param_file = 'clober_params.yaml'
+    param_file = 'clober_gz.yaml'
     bt_file = 'BehaviorTree.xml'
-    map_dir = os.path.join(nav_dir,'map','h_hallway')
+    map_dir = os.path.join(nav_dir,'map')
     map_file = 'map.yaml'
 
     namespace = LaunchConfiguration('namespace')

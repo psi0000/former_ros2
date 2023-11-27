@@ -31,8 +31,11 @@ class LaserTfNode(Node):
                 'base_link',  # 변환의 목적 프레임
                 msg.header.frame_id,  # 현재 프레임
                 msg.header.stamp,  # 변환을 수행할 timestamp
-                rclpy.duration.Duration(seconds=1.0)  # 타임아웃 설정
+                rclpy.duration.Duration(seconds=1/15)  # 타임아웃 설정
             )
+
+            temp_ranges = msg.ranges
+            temp_ranges.reverse()
 
             # 변환된 `/scan` 데이터 생성
             transformed_scan = LaserScan()
@@ -46,6 +49,8 @@ class LaserTfNode(Node):
             transformed_scan.range_min = msg.range_min
             transformed_scan.range_max = msg.range_max
             transformed_scan.ranges = msg.ranges
+            transformed_scan.intensities = msg.intensities
+            transformed_scan.ranges = temp_ranges
             # 변환된 `/scan` 데이터 발행
             self.tms_scan_publisher.publish(transformed_scan)
 

@@ -35,6 +35,7 @@ def generate_launch_description():
     nav2_launch_dir = os.path.join(
         get_package_share_directory("clober_navigation2"), "launch"
     )
+
     nav_dir = get_package_share_directory('clober_navigation')
     launch_dir = os.path.join(nav_dir,'launch')
     param_dir = os.path.join(nav_dir,'param')
@@ -65,7 +66,7 @@ def generate_launch_description():
 
     declare_namespace_cmd = DeclareLaunchArgument(
         'namespace',
-        default_value='clober',
+        default_value='',
         description='Top-level namespace')
 
     declare_use_namespace_cmd = DeclareLaunchArgument(
@@ -143,19 +144,19 @@ def generate_launch_description():
                             'params_file': params_file,
                             'use_lifecycle_mgr': 'false'}.items()),
 
-        # IncludeLaunchDescription(
-        #     PythonLaunchDescriptionSource(os.path.join(launch_dir, 'navigation.launch.py')),
-        #     launch_arguments={'namespace': namespace,
-        #                     'use_sim_time': use_sim_time,
-        #                     'autostart': autostart,
-        #                     'params_file': params_file,
-        #                     'default_bt_xml_filename': default_bt_xml_filename,
-        #                     'use_lifecycle_mgr': 'false',
-        #                     'map_subscribe_transient_local': 'true',
-        #                     'map': map_topic,
-        #                     'scan': scan_topic,
-        #                     'bt_publisher': bt_publisher_port,
-        #                     'bt_server': bt_server_port}.items()),
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(os.path.join(launch_dir, 'navigation.launch.py')),
+            launch_arguments={'namespace': namespace,
+                            'use_sim_time': use_sim_time,
+                            'autostart': autostart,
+                            'params_file': params_file,
+                            'default_bt_xml_filename': default_bt_xml_filename,
+                            'use_lifecycle_mgr': 'false',
+                            'map_subscribe_transient_local': 'true',
+                            'map': map_topic,
+                            'scan': scan_topic,
+                            'bt_publisher': bt_publisher_port,
+                            'bt_server': bt_server_port}.items()),
 
         
 
@@ -175,7 +176,7 @@ def generate_launch_description():
                 launch_arguments={
                     "use_sim_time": use_sim_time,
                     "autostart": autostart,
-                    "map": map_dir,
+                    "map": map_yaml_file,
                     "params_file": params_file,
                 }.items(),
             ),                   
