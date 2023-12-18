@@ -27,7 +27,7 @@ def generate_launch_description():
         default=os.path.join(
             get_package_share_directory("clober_navigation2"),
             "maps", 
-            "CLOBOT_4F.yaml"
+            "1층-KTUMYEON.yaml"
         ),
     )
     nav2_config_dir = LaunchConfiguration(
@@ -56,12 +56,12 @@ def generate_launch_description():
                 )
             ),
 
-            # rviz2
-            IncludeLaunchDescription(
-                PythonLaunchDescriptionSource(
-                    [clober_description_launch_file_dir, "/rviz2_launch.py"]
-                )
-            ),
+            # # rviz2
+            # IncludeLaunchDescription(
+            #     PythonLaunchDescriptionSource(
+            #         [clober_description_launch_file_dir, "/rviz2_launch.py"]
+            #     )
+            # ),
 
             # navigation2 bringup 
             IncludeLaunchDescription(

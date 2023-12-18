@@ -20,8 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-
-            'laser_tf = laser_tf.laser_tf:main'
+            'laser_tf = laser_tf.laser_tf:main',
+            'laser_tms = laser_tf.laser_tms:main'
         ],
     },
 )

@@ -7,8 +7,6 @@
   <maintainer email="qkrwk0921@naver.com">clobot</maintainer>
   <license>TODO: License declaration</license>
 
-
-
   <exec_depend>rclpy</exec_depend>
   <exec_depend>sensor_msgs</exec_depend>
   <exec_depend>tf2_ros</exec_depend>

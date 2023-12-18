@@ -27,6 +27,7 @@ set(
   "msg/ServiceMode.msg"
   "msg/TMSMode.msg"
   "msg/NavMode.msg"
+  "msg/Verification.msg"
 
 )
 
@@ -37,6 +38,7 @@ set(
   "srv/SetPose.srv"
   "srv/Wait.srv"
   "srv/WaitFinish.srv"
+  "srv/SendGoal.srv"
   "srv/SetGoal.srv"
   "srv/GetGtfInfo.srv"
  )

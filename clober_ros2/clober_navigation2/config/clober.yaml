@@ -41,10 +41,15 @@ amcl:
     # /intialpose about 4th
     set_initial_pose: true
     initial_pose:
-      x: 4.0044
-      y: -1.03103
-      z: 0.649396
-      yaw: 1.06045
+      x: -0.0501941
+      y: 0.463757
+      z: 0.0
+      yaw: 1.55975
+
+
+
+
+
 
 
 amcl_map_client:
@@ -95,7 +100,7 @@ controller_server:
     use_sim_time: false
     controller_frequency: 10.0
     min_x_velocity_threshold: 0.001
-    min_y_velocity_threshold: 0.5
+    min_y_velocity_threshold: 0.001 #0.5
     min_theta_velocity_threshold: 0.001
     progress_checker_plugin: "progress_checker"
     goal_checker_plugin: "goal_checker"
@@ -120,16 +125,16 @@ controller_server:
       min_vel_y: 0.0
       max_vel_x: 0.5
       max_vel_y: 0.0
-      max_vel_theta: 1.5
+      max_vel_theta: 0.5
       min_speed_xy: 0.0
       max_speed_xy: 0.5
       min_speed_theta: 0.0
       acc_lim_x: 0.5
       acc_lim_y: 0.0
-      acc_lim_theta: 1.5
+      acc_lim_theta: 0.5
       decel_lim_x: -0.5
       decel_lim_y: 0.0
-      decel_lim_theta: -1.5
+      decel_lim_theta: -0.5
       vx_samples: 20
       vy_samples: 5
       vtheta_samples: 20
@@ -137,13 +142,13 @@ controller_server:
       linear_granularity: 0.05
       angular_granularity: 0.025
       transform_tolerance: 0.2
-      xy_goal_tolerance: 0.25
+      xy_goal_tolerance: 0.20
       trans_stopped_velocity: 0.25
       short_circuit_trajectory_evaluation: true
       stateful: true
       critics: ["ObstacleFootprint", "RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]
       BaseObstacle.scale: 0.02
-      ObstacleFootprint.min_obstacle_dist: 0.5
+      ObstacleFootprint.min_obstacle_dist: 0.7
       ObstacleFootprint.max_scaling_factor: 0.5
       PathAlign.scale: 32.0
       PathAlign.forward_point_distance: 0.1
@@ -204,7 +209,7 @@ local_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 1.5
-        inflation_radius: 3.0
+        inflation_radius: 4.0
       static_layer:
         map_subscribe_transient_local: true
       always_send_full_costmap: true
@@ -272,7 +277,7 @@ global_costmap:
 map_server:
   ros__parameters:
     use_sim_time: false
-    yaml_filename: "4th.yaml"
+    yaml_filename: "1층-KTUMYEON.yaml"
     
 
 map_saver:

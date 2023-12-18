@@ -75,17 +75,37 @@ private:
             if (key == '0') {
 
                 cout<<"Go to InitPose"<<endl;
-                setDesiredPose(0.084, -0.332, 0.0, 0.0, 0.0, -0.250347, 0.968156);
+                setDesiredPose(-0.0846604, -0.231, 0.0, 0.0, 0.0, 0.716745, 0.697335);
 
             }else if (key == '1') {
 
                 cout<<"Go to 1"<<endl;  
-                setDesiredPose(-0.690582, 2.98624, 0.0, 0.0, 0.0, 0.475004, 0.879984);
+                setDesiredPose(-2.09483, -1.89985, 0.0, 0.0, 0.0, 0.65727, 0.753655);
 
             }else if (key == '2') {
 
                 cout<<"Go to 2"<<endl;  
-                setDesiredPose(3.36312, 1.11576, 0.0, 0.0, 0.0, -0.855573, 0.517683);
+                setDesiredPose(-1.78594, 4.41018, 0.0, 0.0, 0.0, 0.013575, 0.999908);
+
+            }else if (key == '3') {
+
+                cout<<"Go to 3"<<endl;  
+                setDesiredPose(1.96068, 3.88317, 0.0, 0.0, 0.0, 0.0062032, 0.999981);
+
+            }else if (key == '4') {
+
+                cout<<"Go to 4"<<endl;  
+                setDesiredPose(5.27684, 4.01497, 0.0, 0.0, 0.0, -0.727762, 0.68583);
+
+            }else if (key == '5') {
+
+                cout<<"Go to 5"<<endl;  
+                setDesiredPose(4.74515, -0.807825, 0.0, 0.0, 0.0, -0.999258, 0.0385052);
+
+            }else if (key == '6') {
+
+                cout<<"Go to 6"<<endl;  
+                setDesiredPose(2.01114, -0.908249, 0.0, 0.0, 0.0, -0.996714, 0.0810063);
 
             }else if(key == 'q'){
 
