@@ -122,8 +122,8 @@ def generate_launch_description():
             #         [d435_launch_file_dir, "/d435_launch.py"]
             #     ),
             # ),
-            IncludeLaunchDescription(
-                PythonLaunchDescriptionSource([imu_launch_file_dir, "/mi_launch.py"]),
-            ),
+            # IncludeLaunchDescription(
+            #     PythonLaunchDescriptionSource([imu_launch_file_dir, "/mi_launch.py"]),
+            # ),
         ]
     )
